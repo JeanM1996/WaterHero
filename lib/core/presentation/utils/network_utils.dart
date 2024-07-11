@@ -1,0 +1,58 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
+
+StreamTransformer<ConnectivityResult, ConnectivityResult> debounce(
+  Duration debounceDuration,
+) {
+  var seenFirstData = false;
+  Timer? debounceTimer;
+
+  return StreamTransformer<ConnectivityResult, ConnectivityResult>.fromHandlers(
+    handleData: (ConnectivityResult data, EventSink<ConnectivityResult> sink) {
+      if (seenFirstData) {
+        debounceTimer?.cancel();
+        debounceTimer = Timer(debounceDuration, () => sink.add(data));
+      } else {
+        sink.add(data);
+        seenFirstData = true;
+      }
+    },
+    handleDone: (EventSink<ConnectivityResult> sink) {
+      debounceTimer?.cancel();
+      sink.close();
+    },
+  );
+}
+
+StreamTransformer<ConnectivityResult, ConnectivityResult> startsWith(
+  ConnectivityResult data,
+) {
+  return StreamTransformer<ConnectivityResult, ConnectivityResult>(
+    (
+      Stream<ConnectivityResult> input,
+      bool cancelOnError,
+    ) {
+      StreamController<ConnectivityResult>? controller;
+      late StreamSubscription<ConnectivityResult> subscription;
+
+      controller = StreamController<ConnectivityResult>(
+        sync: true,
+        onListen: () => controller?.add(data),
+        onPause: ([Future<dynamic>? resumeSignal]) =>
+            subscription.pause(resumeSignal),
+        onResume: () => subscription.resume(),
+        onCancel: () => subscription.cancel(),
+      );
+
+      subscription = input.listen(
+        controller.add,
+        onError: controller.addError,
+        onDone: controller.close,
+        cancelOnError: cancelOnError,
+      );
+
+      return controller.stream.listen(null);
+    },
+  );
+}

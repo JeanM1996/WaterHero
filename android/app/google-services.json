@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "911184739545",
+    "project_id": "waterhero-6d51f",
+    "storage_bucket": "waterhero-6d51f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911184739545:android:00ae400c207aeedd11d2c8",
+        "android_client_info": {
+          "package_name": "com.tresastronautas.waterhero"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPYQ1zoGuabz8mNyymiMZ9HX6Jfa-2Ics"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

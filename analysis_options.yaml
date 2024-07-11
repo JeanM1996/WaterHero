@@ -1,0 +1,23 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+linter:
+  rules:
+    public_member_api_docs: false
+
+analyzer:
+  errors:
+    unused_import: error
+    invalid_annotation_target: ignore
+    avoid_renaming_method_parameters: ignore
+    type_annotate_public_apis: ignore
+    argument_type_not_assignable: warning
+    invalid_assignment: warning
+    field_initializer_not_assignable: warning
+    non_bool_condition: warning
+    return_of_invalid_type_from_closure: warning
+    list_element_type_not_assignable: warning
+    non_bool_negation_expression: warning
+    non_bool_operand: warning
+    return_of_invalid_type: warning
+    map_key_type_not_assignable: warning
+

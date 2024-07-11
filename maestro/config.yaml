@@ -1,0 +1,21 @@
+# config.yaml
+flows:
+  - tests/*
+
+excludeTags:
+  - util
+
+notifications:
+  email:
+    enabled: true
+    onSuccess: true
+    recipients:
+      - jean.paul@tresastronautas.com
+ 
+
+#To run all the tests in maestro cloud
+# maestro cloud sample.apk android-flow.yaml
+maestro test maestro/tests
+# maestro cloud '/Users/sabowsla/Desktop/harmonieflutterv3/build/app/outputs/flutter-apk/app-release.apk' maestro/tests/playlists_101.yaml
+
+# maestro cloud --exclude-tags=login '/Users/sabowsla/Desktop/harmonie-flutter-v3/build/app/outputs/flutter-apk/app-release.apk' maestro/tests/

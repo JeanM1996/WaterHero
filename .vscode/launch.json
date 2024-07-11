@@ -1,0 +1,50 @@
+{
+  "version": "0.2.1",
+  "configurations": [
+    {
+      "name": "waterhero_alpha",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_alpha.dart",
+    },
+    {
+      "name": "waterhero_beta",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_beta.dart",
+    },
+    {
+      "name": "waterhero_staging",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_staging.dart",
+    },
+    {
+      "name": "waterhero_prod",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+    },
+    {
+      "name": "waterhero_beta_profile",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "program": "lib/main_beta.dart",
+    },
+    {
+      "name": "waterhero_prod_profile",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "program": "lib/main.dart",
+    },
+    {
+      "name": "waterhero_alpha_profile",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "program": "lib/main_alpha.dart",
+    },
+  ]
+}

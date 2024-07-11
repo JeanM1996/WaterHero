@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Confugurar ambiente para el desarrollo",
+      "type": "shell",
+      "command": "bash",
+      "args": ["prepare.sh", "prepare"],
+      "presentation": {
+        "reveal": "never",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+     {
+      "label": "Configurar ambiente para el desarrollo windows",
+      "type": "shell",
+      "command":"C:\\Program Files\\Git\\bin\\bash.exe",
+      "args": ["-c", "bash prepare.sh prepare"],
+      "presentation": {
+        "reveal": "never",
+        "clear": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

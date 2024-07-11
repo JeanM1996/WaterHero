@@ -1,0 +1,41 @@
+{
+  "noInternet" : "No hay conexión a internet",
+  "noInternetMessage" : "Por favor, compruebe su conexión a internet",
+  "ok" : "OK",
+  "weArePresentingFailures" : "Estamos presentando fallas",
+  "weArePresentingFailuresMessage" : "Por favor, inténtelo de nuevo más tarde",
+  "tryAgain" : "Intentar de nuevo",
+  "cancel" : "Cancelar",
+  "login" : "Iniciar sesión",
+  "loginWelcome" : "Bienvenido, inicie sesión para continuar",
+  "email" : "Correo electrónico",
+  "password" : "Contraseña",
+  "forgotPassword" : "¿Olvidaste tu contraseña?",
+  "login" : "Iniciar sesión",
+  "register" : "Registrarse",
+  "errorOnLogin" : "Error al iniciar sesión",
+  "errorOnLoginMessage" : "Por favor, compruebe su correo electrónico y contraseña",
+  "userDisabled" : "Usuario deshabilitado",
+  "userDisabledMessage" : "Por favor, póngase en contacto con el administrador",
+  "wrongCredentials" : "Credenciales incorrectas",
+  "registerMessage" : "Por favor, complete los campos para registrarse",
+  "name" : "Nombre",
+  "lastName" : "Apellido",
+  "registerVerb" : "Registrarse",
+  "forgotMyPassword" : "Olvidé mi contraseña",
+  "forgotMyPasswordMessage" : "Por favor, introduzca su correo electrónico para restablecer su contraseña",
+  "send" : "Enviar",
+  "serviceCode" : "Código de servicio"
+}
+
+
+  
+
+
+
+
+
+
+
+  
+  
