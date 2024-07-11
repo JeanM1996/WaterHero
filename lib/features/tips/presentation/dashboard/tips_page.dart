@@ -14,7 +14,13 @@ class TipsPage extends ConsumerStatefulWidget {
 class _TipsPageState extends ConsumerState<TipsPage> {
   @override
   void initState() {
+    Future.delayed(Duration.zero, getInitData);
     super.initState();
+  }
+
+  Future<void> getInitData() async {
+    final controller = ref.read(tipsControllerProvider.notifier);
+    controller.loadTips();
   }
 
   @override
@@ -32,8 +38,42 @@ class _TipsPageState extends ConsumerState<TipsPage> {
                     child: Container(
                       padding: context.symetric(0, .05),
                       margin: context.symetric(.05, 0),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: state.tips.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: context.symetric(.05, 0),
+                            child: Column(
+                              children: [
+                                Container(
+                                  margin: context.symetric(.05, 0),
+                                  child: Image.network(
+                                    state.tips[index].imageUrl,
+                                    height: context.height(.2),
+                                  ),
+                                ),
+                                Container(
+                                  margin: context.symetric(.05, 0),
+                                  child: Text(
+                                    state.tips[index].title,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                ),
+                                Container(
+                                  margin: context.symetric(.05, 0),
+                                  child: Text(
+                                    state.tips[index].description,
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),

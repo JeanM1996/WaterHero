@@ -52,7 +52,7 @@ final router = GoRouter(
         state: state,
         child: const MainPage(
           pageTitle: '',
-          pageState: 2,
+          pageState: 0,
           child: ComsumptionPage(
             {},
           ),
@@ -65,7 +65,7 @@ final router = GoRouter(
         state: state,
         child: const MainPage(
           pageTitle: '',
-          pageState: 2,
+          pageState: 1,
           child: TipsPage(
             {},
           ),

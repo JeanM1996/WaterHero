@@ -14,7 +14,13 @@ class PromotionsPage extends ConsumerStatefulWidget {
 class _PromotionsPageState extends ConsumerState<PromotionsPage> {
   @override
   void initState() {
+    Future.delayed(Duration.zero, getInitData);
     super.initState();
+  }
+
+  Future<void> getInitData() async {
+    final controller = ref.read(promotionsController.notifier);
+    controller.loadContacts();
   }
 
   @override
@@ -32,8 +38,51 @@ class _PromotionsPageState extends ConsumerState<PromotionsPage> {
                     child: Container(
                       padding: context.symetric(0, .05),
                       margin: context.symetric(.05, 0),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: state.promotions.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: context.symetric(.05, 0),
+                            child: Column(
+                              children: [
+                                Container(
+                                  margin: context.symetric(.05, 0),
+                                  child: Text(
+                                    state.promotions[index].name,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                ),
+                                Container(
+                                  margin: context.symetric(.05, 0),
+                                  child: Text(
+                                    state.promotions[index].email,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                ),
+                                Container(
+                                  margin: context.symetric(.05, 0),
+                                  child: Text(
+                                    state.promotions[index].phone,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                ),
+                                Container(
+                                  margin: context.symetric(.05, 0),
+                                  child: Text(
+                                    state.promotions[index].address,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),

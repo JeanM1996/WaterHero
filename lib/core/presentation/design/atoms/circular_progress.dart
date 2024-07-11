@@ -9,13 +9,12 @@ class CircularProgress extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * .8,
       width: MediaQuery.of(context).size.width,
-      color: colors.white,
+      color: Colors.transparent,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircularProgressIndicator(
-            color: colors.blue,
+            color: colors.white,
           ),
         ],
       ),

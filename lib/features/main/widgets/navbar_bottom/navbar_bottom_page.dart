@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waterhero/core/presentation/utils/constants.dart';
-import 'package:waterhero/core/presentation/utils/role_extension.dart';
 import 'package:waterhero/core/presentation/utils/routes.dart';
 import 'package:waterhero/features/main/domain/select_option.dart';
 import 'package:waterhero/features/main/widgets/navbar_bottom/navbar_bottom_controller.dart';
@@ -46,19 +45,15 @@ class _NavbarBottomState extends ConsumerState<NavbarBottomPage> {
   }
 
   List<SelectOption> setNavbar() {
-    switch (role.toRoleEnum()) {
-      case RoleType.consumer:
-        return constants.consumerOptions.map((option) {
-          return SelectOption(
-            label: (option['name'] ?? '') as String,
-            value: option['index'],
-            icon: (option['icon'] ?? '') as String,
-            description: (option['icon'] ?? '') as String,
-            semanticLabel: (option['semanticLabel'] ?? '') as String,
-          );
-        }).toList();
-    }
-    return [];
+    return constants.consumerOptions.map((option) {
+      return SelectOption(
+        label: (option['name'] ?? '') as String,
+        value: option['index'],
+        icon: (option['icon'] ?? '') as String,
+        description: (option['icon'] ?? '') as String,
+        semanticLabel: (option['semanticLabel'] ?? '') as String,
+      );
+    }).toList();
   }
 
   @override
@@ -66,7 +61,7 @@ class _NavbarBottomState extends ConsumerState<NavbarBottomPage> {
     final controller = ref.watch(navbarBottomControllerProvider.notifier);
     final state = ref.watch(navbarBottomControllerProvider);
     return Material(
-      color: Colors.white,
+      color: Colors.transparent,
       elevation: 10,
       type: MaterialType.card,
       borderRadius: const BorderRadius.only(
@@ -105,17 +100,16 @@ Future<void> onUpdateSelection({
 
   switch (currentOption.value) {
     case 0:
-      final storage = await SharedPreferences.getInstance();
       context.pushReplacement(
         Routes.comsumptionRoute,
-        extra: {
-          'role': storage.get('role'),
-          'name': storage.get('name'),
-        },
+        extra: {},
       );
       break;
     case 1:
-      context.pushReplacement(Routes.tipsRoute);
+      context.pushReplacement(
+        Routes.tipsRoute,
+        extra: {},
+      );
       break;
     case 2:
       context.pushReplacement(

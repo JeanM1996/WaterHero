@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-	<dict>
-		<key>API_KEY</key>
-		<string>AIzaSyAmHwi5X3CEAHWRFXhC_W5vzl-DGf5-V7E</string>
-		<key>GCM_SENDER_ID</key>
-		<string>860120913199</string>
-		<key>PLIST_VERSION</key>
-		<string>1</string>
-		<key>BUNDLE_ID</key>
-		<string>com.tresastronautas.waterhero</string>
-		<key>PROJECT_ID</key>
-		<string>waterhero-3a</string>
-		<key>STORAGE_BUCKET</key>
-		<string>waterhero-3a.appspot.com</string>
-		<key>IS_ADS_ENABLED</key>
-		<false></false>
-		<key>IS_ANALYTICS_ENABLED</key>
-		<true></true>
-		<key>IS_APPINVITE_ENABLED</key>
-		<true></true>
-		<key>IS_GCM_ENABLED</key>
-		<true></true>
-		<key>IS_SIGNIN_ENABLED</key>
-		<true></true>
-		<key>GOOGLE_APP_ID</key>
-		<string>1:860120913199:ios:911c4f3bae8a524f49bdda</string>
-	</dict>
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBeL9WhsP4rlfH2P7zGvPxaYHHdpLQwLcs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>911184739545</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tresastronautas.waterhero</string>
+	<key>PROJECT_ID</key>
+	<string>waterhero-6d51f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>waterhero-6d51f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:911184739545:ios:f0096de36d7add9311d2c8</string>
+</dict>
 </plist>

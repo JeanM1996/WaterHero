@@ -6,21 +6,21 @@ class Constants {
   final List<Map<String, dynamic>> consumerOptions = [
     {
       'name': 'Consumo',
-      'icon': iconsPaths.iconComsumption,
+      'icon': iconsPaths.iconFaucet,
       'index': 0,
-      'semanticLabel': 'opt_home',
+      'semanticLabel': 'opt_consumption',
     },
     {
       'name': 'Consejos',
       'icon': iconsPaths.iconTips,
       'index': 1,
-      'semanticLabel': 'opt_offices',
+      'semanticLabel': 'opt_tips',
     },
     {
       'name': 'Promociones',
-      'icon': iconsPaths.iconPromotions,
+      'icon': iconsPaths.iconComsumption,
       'index': 2,
-      'semanticLabel': 'opt_advisors',
+      'semanticLabel': 'opt_promotions',
     },
   ];
 }

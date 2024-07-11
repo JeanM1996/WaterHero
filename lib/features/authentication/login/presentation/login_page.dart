@@ -208,7 +208,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
       // ignore: prefer-extracting-callbacks, required this
       CustomDialogs.hideLoadingDialog(context);
-      if (status == 'Login success') {
+      if (status) {
         final storage = await SharedPreferences.getInstance();
         context.go(
           Routes.comsumptionRoute,
@@ -218,25 +218,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           },
         );
       } else {
-        if (status == 'Wrong credentials') {
-          _showWrongCredentials();
-        }
-        if (status == 'Login error') {
-          _showErrorDialog(
-            context,
-            Lang.of(context).errorOnLogin,
-            Lang.of(context).errorOnLoginMessage,
-            context.height(.51),
-          );
-        }
-        if (status == 'User locked') {
-          _showErrorDialog(
-            context,
-            Lang.of(context).userDisabled,
-            Lang.of(context).userDisabledMessage,
-            context.height(.51),
-          );
-        }
+        _showWrongCredentials();
       }
     }
   }

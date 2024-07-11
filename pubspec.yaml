@@ -48,6 +48,7 @@ dependencies:
   url_launcher: ^6.2.6
   whatsapp_share: ^2.0.2
   widget_screenshot: any
+  weather: ^3.1.1
 
 dependency_overrides:
   flutter_colorpicker:

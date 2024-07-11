@@ -22,6 +22,20 @@ class FirebaseRest {
     }
   }
 
+  //add data with id to collection
+  Future<HttpServiceResponse> addDataWithId(
+    String collection,
+    String id,
+    Map<String, dynamic> data,
+  ) async {
+    try {
+      await _firestore.collection(collection).doc(id).set(data);
+      return HttpServiceResponse(success: true, message: 'Data added');
+    } catch (e) {
+      return HttpServiceResponse(success: false, message: '$e');
+    }
+  }
+
   Future<HttpServiceResponse> setData(
     String collection,
     String id,

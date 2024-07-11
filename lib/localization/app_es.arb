@@ -25,7 +25,18 @@
   "forgotMyPassword" : "Olvidé mi contraseña",
   "forgotMyPasswordMessage" : "Por favor, introduzca su correo electrónico para restablecer su contraseña",
   "send" : "Enviar",
-  "serviceCode" : "Código de servicio"
+  "serviceCode" : "Código de servicio",
+  "emailSent" : "Correo electrónico enviado",
+  "emailSentMessage" : "Se ha enviado un correo electrónico con instrucciones para restablecer su contraseña",
+  "loadingWeather" : "Cargando clima",
+  "exceedExpectedConsumption" : "Excederás tu consumo esperado",
+  "exceedExpectedConsumptionMessage" : "¡Cuida tu tiempo en la ducha!",
+  "youAreSavingWater" : "Estás ahorrando agua",
+  "youAreSavingWaterMessage" : "¡Sigue así!",
+  "projectedConsumption" : "Consumo proyectado",
+  "showerTime" : "Tiempo en ducha",
+  "dailyConsumption" : "Consumo por día"
+  
 }
 
 

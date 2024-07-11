@@ -30,22 +30,11 @@ class _SplashState extends ConsumerState<SplashPage> {
     if (storage.getString('token') != null) {
       final status = await controller.loadInitialData();
       if (status) {
-        final keepSession = storage.getBool('keepSession') ?? false;
-
-        if (!keepSession) {
-          await storage.clear();
-          Future.delayed(const Duration(seconds: 2), () {
-            context.go(
-              Routes.loginRoute,
-            );
-          });
-        } else {
-          Future.delayed(const Duration(seconds: 2), () {
-            context.go(
-              Routes.comsumptionRoute,
-            );
-          });
-        }
+        Future.delayed(const Duration(seconds: 2), () {
+          context.go(
+            Routes.comsumptionRoute,
+          );
+        });
       } else {
         Future.delayed(const Duration(seconds: 2), () {
           context.go(

@@ -246,6 +246,66 @@ abstract class Lang {
   /// In es, this message translates to:
   /// **'Código de servicio'**
   String get serviceCode;
+
+  /// No description provided for @emailSent.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo electrónico enviado'**
+  String get emailSent;
+
+  /// No description provided for @emailSentMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Se ha enviado un correo electrónico con instrucciones para restablecer su contraseña'**
+  String get emailSentMessage;
+
+  /// No description provided for @loadingWeather.
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando clima'**
+  String get loadingWeather;
+
+  /// No description provided for @exceedExpectedConsumption.
+  ///
+  /// In es, this message translates to:
+  /// **'Excederás tu consumo esperado'**
+  String get exceedExpectedConsumption;
+
+  /// No description provided for @exceedExpectedConsumptionMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Cuida tu tiempo en la ducha!'**
+  String get exceedExpectedConsumptionMessage;
+
+  /// No description provided for @youAreSavingWater.
+  ///
+  /// In es, this message translates to:
+  /// **'Estás ahorrando agua'**
+  String get youAreSavingWater;
+
+  /// No description provided for @youAreSavingWaterMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Sigue así!'**
+  String get youAreSavingWaterMessage;
+
+  /// No description provided for @projectedConsumption.
+  ///
+  /// In es, this message translates to:
+  /// **'Consumo proyectado'**
+  String get projectedConsumption;
+
+  /// No description provided for @showerTime.
+  ///
+  /// In es, this message translates to:
+  /// **'Tiempo en ducha'**
+  String get showerTime;
+
+  /// No description provided for @dailyConsumption.
+  ///
+  /// In es, this message translates to:
+  /// **'Consumo por día'**
+  String get dailyConsumption;
 }
 
 class _LangDelegate extends LocalizationsDelegate<Lang> {

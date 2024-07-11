@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waterhero/core/presentation/design/tokens/theme.dart' as t;
 import 'package:waterhero/core/presentation/utils/routes.dart';
 import 'package:waterhero/features/theme_notifier.dart';
@@ -19,23 +17,6 @@ class _AppState extends ConsumerState<App> {
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  Future<void> dispose() async {
-    final storage = await SharedPreferences.getInstance();
-    final keepSession = storage.getBool('keepSession') ?? false;
-    if (!keepSession) {
-      //more sectionController
-
-      await storage.clear();
-      Future.delayed(const Duration(milliseconds: 500), () {
-        context.go(
-          Routes.loginRoute,
-        );
-      });
-    }
-    super.dispose();
   }
 
   @override

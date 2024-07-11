@@ -13,7 +13,11 @@ class NavbarBottomController extends StateNotifier<NavbarBottomState> {
   /// Dado [currentOption]
   /// Obtiene animación del NavigationBar
   void updateSelection(SelectOption currentOption) {
-    var option = currentOption;
+    final option = currentOption;
     state = state.copyWith(option: option);
+  }
+
+  void updateWarning(bool warning) {
+    state = state.copyWith(warning: warning);
   }
 }

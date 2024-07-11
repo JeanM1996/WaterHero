@@ -8,7 +8,10 @@ import 'package:waterhero/core/presentation/utils/custom_dialogs.dart';
 import 'package:waterhero/core/presentation/utils/dimens_extension.dart';
 import 'package:waterhero/core/presentation/utils/icons_paths.dart';
 import 'package:waterhero/core/presentation/utils/network_watcher.dart';
+import 'package:waterhero/features/main/widgets/navbar_bottom/navbar_bottom_controller.dart';
 import 'package:waterhero/features/main/widgets/navbar_bottom/navbar_bottom_page.dart';
+import 'package:waterhero/features/main/widgets/profile_widget.dart';
+import 'package:waterhero/features/main/widgets/weather_widget.dart';
 
 /// Esta page envuelve cualquier widget que se le envíe cómo [child]
 /// dentro de el [CustomAppBar] y el [NavigationBarHibridoPage]
@@ -54,23 +57,34 @@ class MainPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final connectivityStatusProvider = ref.watch(connectivityStatusProviders);
-
+    final stateNav = ref.watch(navbarBottomControllerProvider);
     return Scaffold(
       extendBody: true,
-      backgroundColor: colors.whiteGrey.withOpacity(1),
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
       appBar: showAppBar
           ? AppBar(
+              backgroundColor: Colors.transparent,
               centerTitle: centerContent,
-              title: customTitle ??
-                  CustomText(
-                    pageTitle,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                    textColor: colors.darkOverlay,
-                    fontFamily: 'Figtree',
-                    letterSpacing: -0.5,
+              title: const Row(
+                children: [
+                  Flexible(
+                    child: Row(
+                      children: [
+                        WeatherWidget(),
+                      ],
+                    ),
                   ),
-              automaticallyImplyLeading: false,
+                  Flexible(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ProfileWidget(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               leading: showBackButton
                   ? IconButton(
                       icon: const Icon(
@@ -152,9 +166,7 @@ class MainPage extends ConsumerWidget {
                     )
                   : null,
               actions: [actionButton],
-              surfaceTintColor: Colors.white,
-              elevation: 4,
-              shadowColor: colors.shadowWhite.withOpacity(.3),
+              elevation: 1,
             )
           : null,
       bottomNavigationBar: showNavigationBar
@@ -174,51 +186,84 @@ class MainPage extends ConsumerWidget {
                   ],
                 )
           : null,
-      body: SafeArea(
-        top: false,
-        child: Container(
-          color: Colors.white,
-          child: Stack(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  child,
-                ],
-              ),
-              if (connectivityStatusProvider ==
-                  ConnectivityStatus.isDisonnected)
-                Positioned.fill(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: colors.white.withOpacity(.8),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.wifi_off,
-                            size: 50,
-                            color: colors.black,
-                          ),
-                          const SizedBox(height: 10),
-                          CustomText(
-                            'Sin conexión a internet',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            textColor: colors.black,
-                          ),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              iconsPaths.backroundOfficial,
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned.fill(
+            bottom: -(context.height() + 290),
+            child: Container(
+              width: context.width(),
+              //gradient of red color or blue color depends state color
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: stateNav.warning!
+                      ? [
+                          Colors.transparent,
+                          Colors.red.shade400.withOpacity(.2),
+                          Colors.red.withOpacity(.2),
+                          Colors.red,
+                          Colors.red,
+                          Colors.red,
+                          Colors.red,
+                        ]
+                      : [
+                          Colors.transparent,
+                          Colors.blue.shade400.withOpacity(.2),
+                          Colors.blue.withOpacity(.2),
+                          Colors.blue,
+                          Colors.blue,
+                          Colors.blue,
                         ],
-                      ),
-                    ),
-                  ),
                 ),
+              ),
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              child,
             ],
           ),
-        ),
+          if (connectivityStatusProvider == ConnectivityStatus.isDisonnected)
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: colors.white.withOpacity(.8),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.wifi_off,
+                        size: 50,
+                        color: colors.black,
+                      ),
+                      const SizedBox(height: 10),
+                      CustomText(
+                        'Sin conexión a internet',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        textColor: colors.black,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }

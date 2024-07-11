@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:waterhero/core/presentation/design/atoms/atoms.dart';
 import 'package:waterhero/core/presentation/design/tokens/tokens.dart';
 import 'package:waterhero/features/main/domain/select_option.dart';
 
@@ -69,8 +68,6 @@ class _NavigationButtonState extends State<NavigationButton> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                    width: 22,
-                                    height: 20,
                                     alignment: Alignment.center,
                                     child: SvgPicture.asset(
                                       (widget.answer!.value == e.value)
@@ -78,24 +75,11 @@ class _NavigationButtonState extends State<NavigationButton> {
                                           : e.icon!,
                                       colorFilter: ColorFilter.mode(
                                         (widget.answer!.value == e.value)
-                                            ? colors.blue
+                                            ? colors.white
                                             : colors.gray,
                                         BlendMode.srcIn,
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  CustomText(
-                                    e.label,
-                                    fontSize: 12,
-                                    fontWeight:
-                                        (widget.answer!.value == e.value)
-                                            ? FontWeight.w700
-                                            : FontWeight.w400,
-                                    textAlign: TextAlign.center,
-                                    textColor: (widget.answer!.value == e.value)
-                                        ? colors.blue
-                                        : colors.gray,
                                   ),
                                 ],
                               ),
@@ -109,7 +93,7 @@ class _NavigationButtonState extends State<NavigationButton> {
                                       const EdgeInsets.symmetric(horizontal: 3),
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: colors.blue,
+                                    color: colors.white,
                                   ),
                                   child: Center(
                                     child: Container(

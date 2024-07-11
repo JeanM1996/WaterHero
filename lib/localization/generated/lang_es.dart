@@ -81,4 +81,34 @@ class LangEs extends Lang {
 
   @override
   String get serviceCode => 'Código de servicio';
+
+  @override
+  String get emailSent => 'Correo electrónico enviado';
+
+  @override
+  String get emailSentMessage => 'Se ha enviado un correo electrónico con instrucciones para restablecer su contraseña';
+
+  @override
+  String get loadingWeather => 'Cargando clima';
+
+  @override
+  String get exceedExpectedConsumption => 'Excederás tu consumo esperado';
+
+  @override
+  String get exceedExpectedConsumptionMessage => '¡Cuida tu tiempo en la ducha!';
+
+  @override
+  String get youAreSavingWater => 'Estás ahorrando agua';
+
+  @override
+  String get youAreSavingWaterMessage => '¡Sigue así!';
+
+  @override
+  String get projectedConsumption => 'Consumo proyectado';
+
+  @override
+  String get showerTime => 'Tiempo en ducha';
+
+  @override
+  String get dailyConsumption => 'Consumo por día';
 }

@@ -1,5 +1,5 @@
-import 'package:waterhero/core/presentation/utils/string_extension.dart';
 import 'package:intl/intl.dart';
+import 'package:waterhero/core/presentation/utils/string_extension.dart';
 
 extension DateExtension on DateTime {
   String toFormattedDate() {
@@ -28,6 +28,10 @@ extension DateExtension on DateTime {
 
     return DateFormat('dd/MM/yyyy \u00B7 hh:mm a')
         .format(add(const Duration(hours: localHours)));
+  }
+
+  String onlyHoutAMPM() {
+    return DateFormat('hh:mm a').format(this);
   }
 
   /// 07 dic, 2022 format

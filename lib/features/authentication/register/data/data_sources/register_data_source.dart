@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:waterhero/core/data/network/http_client.dart';
+import 'package:waterhero/core/data/services/firebase_auth_service.dart';
 
 final registerDataSourceProvider =
     Provider<RegisterDataSource>((ref) => RegisterDataSourceImpl(HttpClient()));
@@ -8,6 +9,9 @@ abstract class RegisterDataSource {
   Future<HttpServiceResponse> register(
     String email,
     String password,
+    String name,
+    String lastName,
+    String serviceCode,
   );
 }
 
@@ -19,13 +23,16 @@ class RegisterDataSourceImpl extends RegisterDataSource {
   Future<HttpServiceResponse> register(
     String email,
     String password,
+    String name,
+    String lastName,
+    String serviceCode,
   ) async {
-    return httpClient.post(
-      endpoint: '/auth',
-      body: {
-        'email': email,
-        'password': password,
-      },
+    return firebaseAuthService.signUpWithEmailAndPassword(
+      email,
+      password,
+      name,
+      lastName,
+      serviceCode,
     );
   }
 }

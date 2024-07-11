@@ -8,11 +8,17 @@ class LoginController extends StateNotifier<LoginState> {
   final LoginUseCase loginUseCase;
 
   // ignore: long-method, required logic
-  Future<String> login(String email, String password) async {
+  Future<bool> login(String email, String password) async {
     final storage = await SharedPreferences.getInstance();
-
-    await storage.setString('token', '');
-    return '';
+    final result = await loginUseCase.login(email: email, password: password);
+    return result.fold(
+      (failure) {
+        return false;
+      },
+      (success) {
+        return true;
+      },
+    );
   }
 }
 

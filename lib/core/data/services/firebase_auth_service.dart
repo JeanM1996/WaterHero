@@ -1,16 +1,19 @@
 //Firebase Auth Service
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:waterhero/core/data/exceptions/unauthorized_exception.dart';
 import 'package:waterhero/core/data/network/firebase_rest.dart';
+import 'package:waterhero/core/data/network/http_client.dart';
 import 'package:waterhero/core/data/services/firebase_storage_service.dart';
+
+final FirebaseAuthService firebaseAuthService = FirebaseAuthService();
 
 class FirebaseAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseRest _firebaseRest = FirebaseRest();
   final FirebaseStorageService _storage = FirebaseStorageService();
 
-  Future<UserCredential> signInWithEmailAndPassword(
+  Future<HttpServiceResponse> signInWithEmailAndPassword(
     String email,
     String password,
   ) async {
@@ -20,17 +23,25 @@ class FirebaseAuthService {
         password: password,
       );
 
-      return result;
+      if (result.user != null) {
+        final sharedPreference = await SharedPreferences.getInstance();
+        await sharedPreference.setString('token', result.user!.uid);
+        return HttpServiceResponse(
+          success: true,
+          message: 'User logged in successfully',
+        );
+      }
+      throw UnauthorizedException();
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<UserCredential> signUpWithEmailAndPassword(
+  Future<HttpServiceResponse> signUpWithEmailAndPassword(
     String email,
     String password,
     String name,
-    File profilePicture,
+    String lastName,
     String serviceCode, //import dart:io File
   ) async {
     try {
@@ -38,25 +49,25 @@ class FirebaseAuthService {
         email: email,
         password: password,
       );
+
       if (result.user != null) {
-        final resultLoad = await _storage.uploadImage(
-          'profilePictures/${result.user!.uid}',
-          profilePicture,
-        );
-        await _firebaseRest.addData('users', {
+        await _firebaseRest.addDataWithId('users', result.user!.uid, {
           'uid': result.user!.uid,
           'email': email,
           'name': name,
-          'profilePicture': resultLoad,
           'createdAt': DateTime.now().toIso8601String(),
           'code': serviceCode,
         });
         //update userCredential
         await result.user!.updateDisplayName(name);
-        await result.user!.updatePhotoURL(resultLoad);
+        final sharedPreference = await SharedPreferences.getInstance();
+        await sharedPreference.setString('token', result.user!.uid);
       }
 
-      return result;
+      return HttpServiceResponse(
+        success: true,
+        message: 'User created successfully',
+      );
     } catch (e) {
       rethrow;
     }
@@ -70,8 +81,12 @@ class FirebaseAuthService {
     return _auth.currentUser!;
   }
 
-  Future<void> sendPasswordResetEmail(String email) async {
+  Future<HttpServiceResponse> sendPasswordResetEmail(String email) async {
     await _auth.sendPasswordResetEmail(email: email);
+    return HttpServiceResponse(
+      success: true,
+      message: 'Email sent successfully',
+    );
   }
 
   Future<void> updatePassword(String password) async {

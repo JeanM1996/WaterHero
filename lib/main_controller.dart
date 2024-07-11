@@ -12,7 +12,7 @@ Future<void> initApp(String flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
   await _defineEnvFileFromFlavor(flavor: flavor);
   await Firebase.initializeApp(
-    name: 'waterhero',
+    name: 'WaterHero',
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);

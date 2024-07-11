@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waterhero/core/data/network/network_checker.dart';
 import 'package:waterhero/core/presentation/design/atoms/atoms.dart';
 import 'package:waterhero/core/presentation/utils/custom_dialogs.dart';
@@ -9,7 +8,7 @@ import 'package:waterhero/core/presentation/utils/dimens_extension.dart';
 import 'package:waterhero/core/presentation/utils/icons_paths.dart';
 import 'package:waterhero/core/presentation/utils/routes.dart';
 import 'package:waterhero/core/presentation/utils/validators.dart';
-import 'package:waterhero/features/authentication/login/presentation/login_controller.dart';
+import 'package:waterhero/features/authentication/restore_password/presentation/restore_controller.dart';
 import 'package:waterhero/localization/generated/lang.dart';
 
 /// Esta page envuelve cualquier widget que se le envíe cómo [child]
@@ -25,9 +24,8 @@ class RestorePage extends ConsumerStatefulWidget {
 
 class _RestorePageState extends ConsumerState<RestorePage> {
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+
   bool emailValid = false;
-  bool passwordEntered = false;
 
   @override
   void initState() {
@@ -37,27 +35,21 @@ class _RestorePageState extends ConsumerState<RestorePage> {
       setState(() {});
     });
 
-    _passwordController.addListener(() {
-      passwordEntered = _passwordController.text.isNotEmpty &&
-          _passwordController.text.length >= 6;
-      setState(() {});
-    });
-
     super.initState();
   }
 
   @override
   void dispose() {
     _emailController.dispose();
-    _passwordController.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     //login state and cotroller
-    final controller = ref.watch(loginController.notifier);
-    final state = ref.watch(loginController);
+    final controller = ref.watch(restoreController.notifier);
+    final state = ref.watch(restoreController);
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.transparent,
@@ -155,25 +147,58 @@ class _RestorePageState extends ConsumerState<RestorePage> {
     );
   }
 
-  dynamic _onTap(LoginController controller) async {
+  dynamic _onTap(RestoreController controller) async {
     final networkStatus = await NetworkChecker.check(context);
     if (networkStatus) {
       CustomDialogs.showLoadingDialog(context);
-      final status = await controller.login(
+      final status = await controller.restore(
         _emailController.text.toLowerCase(),
-        _passwordController.text,
       );
 
       // ignore: prefer-extracting-callbacks, required this
       CustomDialogs.hideLoadingDialog(context);
-      if (status == 'Login success') {
-        final storage = await SharedPreferences.getInstance();
-        context.go(
-          Routes.comsumptionRoute,
-          extra: {
-            'role': storage.get('role'),
-            'name': storage.get('name'),
-          },
+      if (status) {
+        CustomDialogs.showCustomModal(
+          child: Container(
+            height: context.height(.33),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            padding: context.fromLTRB(.05, .05, .05, .05),
+            child: Column(
+              children: [
+                const Icon(Icons.check_circle, color: Colors.green, size: 50),
+                const SizedBox(height: 20),
+                CustomText(
+                  Lang.of(context).emailSent,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  textColor: Colors.black,
+                ),
+                const SizedBox(height: 20),
+                CustomText(
+                  Lang.of(context).emailSentMessage,
+                  fontSize: 16,
+                  height: 1.3,
+                  fontWeight: FontWeight.w400,
+                  textColor: Colors.black,
+                ),
+                const SizedBox(height: 20),
+                CustomButton(
+                  semanticsLabel: 'send',
+                  height: 56,
+                  text: Lang.of(context).ok,
+                  onPressed: () {
+                    context.pop();
+                    context.pushReplacement(Routes.loginRoute);
+                  },
+                ),
+              ],
+            ),
+          ),
+          context: context,
+          isFullScreen: false,
         );
       } else {
         CustomDialogs.modalError(context, _onTap);
@@ -182,7 +207,7 @@ class _RestorePageState extends ConsumerState<RestorePage> {
   }
 
   dynamic _enableButton() {
-    return passwordEntered && emailValid;
+    return emailValid;
   }
 
 // ignore: long-method, required logic

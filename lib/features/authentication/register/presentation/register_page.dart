@@ -9,7 +9,7 @@ import 'package:waterhero/core/presentation/utils/dimens_extension.dart';
 import 'package:waterhero/core/presentation/utils/icons_paths.dart';
 import 'package:waterhero/core/presentation/utils/routes.dart';
 import 'package:waterhero/core/presentation/utils/validators.dart';
-import 'package:waterhero/features/authentication/login/presentation/login_controller.dart';
+import 'package:waterhero/features/authentication/register/presentation/register_controller.dart';
 import 'package:waterhero/localization/generated/lang.dart';
 
 /// Esta page envuelve cualquier widget que se le envíe cómo [child]
@@ -26,6 +26,10 @@ class RegisterPage extends ConsumerStatefulWidget {
 class _RegisterPageState extends ConsumerState<RegisterPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _serviceCodeController = TextEditingController();
+
   bool emailValid = false;
   bool passwordEntered = false;
 
@@ -56,8 +60,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     //login state and cotroller
-    final controller = ref.watch(loginController.notifier);
-    final state = ref.watch(loginController);
+    final controller = ref.watch(registerController.notifier);
+    final state = ref.watch(registerController);
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.transparent,
@@ -136,7 +140,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         semanticsLabel: 'name',
                         label: Lang.of(context).name,
                         inputValueType: InputValueType.name,
-                        controller: _passwordController,
+                        controller: _nameController,
                       ),
                       SizedBox(
                         height: context.height(.025),
@@ -145,7 +149,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         semanticsLabel: 'lastName',
                         label: Lang.of(context).lastName,
                         inputValueType: InputValueType.lastname,
-                        controller: _passwordController,
+                        controller: _lastNameController,
                       ),
                       SizedBox(
                         height: context.height(.025),
@@ -154,7 +158,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         semanticsLabel: 'serviceCode',
                         label: Lang.of(context).serviceCode,
                         inputValueType: InputValueType.document,
-                        controller: _passwordController,
+                        controller: _serviceCodeController,
                       ),
                       SizedBox(
                         height: context.height(.05),
@@ -171,8 +175,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         height: 20,
                       ),
                       CustomButton(
-                        semanticsLabel: 'login',
+                        semanticsLabel: 'cancel',
                         height: 56,
+                        buttonType: ButtonType.secondary,
                         text: Lang.of(context).cancel,
                         onPressed: () => context.pop(),
                       ),
@@ -190,18 +195,21 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     );
   }
 
-  dynamic _onTap(LoginController controller) async {
+  dynamic _onTap(RegisterController controller) async {
     final networkStatus = await NetworkChecker.check(context);
     if (networkStatus) {
       CustomDialogs.showLoadingDialog(context);
-      final status = await controller.login(
+      final status = await controller.register(
         _emailController.text.toLowerCase(),
         _passwordController.text,
+        _nameController.text,
+        _lastNameController.text,
+        _serviceCodeController.text,
       );
 
       // ignore: prefer-extracting-callbacks, required this
       CustomDialogs.hideLoadingDialog(context);
-      if (status == 'Login success') {
+      if (status) {
         final storage = await SharedPreferences.getInstance();
         context.go(
           Routes.comsumptionRoute,
@@ -228,9 +236,5 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     double height,
   ) {
     CustomDialogs.modalError(context, _onTap);
-  }
-
-  dynamic _onTapRestorePassword(BuildContext context) {
-    context.push(Routes.recoveryPasswordRoute);
   }
 }
