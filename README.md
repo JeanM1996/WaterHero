@@ -1,6 +1,6 @@
 # WaterHero
 
-Gestión financiera Flutter App
+WaterHero Flutter App
 
 ## Getting Started
 
