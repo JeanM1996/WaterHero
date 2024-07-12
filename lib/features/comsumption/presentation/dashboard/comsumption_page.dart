@@ -67,9 +67,10 @@ class _ComsumptionPageState extends ConsumerState<ComsumptionPage> {
                   SizedBox(height: context.height(.5)),
                   if (state.isLoading) const CircularProgress(),
                   const SizedBox(height: 20),
-                  AlertSection(
-                    isExceeded: soonToExcess,
-                  ),
+                  if (soonToExcess)
+                    AlertSection(
+                      isExceeded: soonToExcess,
+                    ),
                   const SizedBox(height: 10),
                   const ComsumptionDay(),
                   const SizedBox(height: 10),

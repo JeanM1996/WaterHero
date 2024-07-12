@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:waterhero/core/presentation/design/tokens/theme.dart' as t;
 import 'package:waterhero/core/presentation/utils/routes.dart';
+import 'package:waterhero/features/main/widgets/navbar_bottom/navbar_bottom_controller.dart';
 import 'package:waterhero/features/theme_notifier.dart';
 import 'package:waterhero/localization/generated/lang.dart';
 
@@ -38,8 +39,10 @@ class _AppState extends ConsumerState<App> {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
+            locale: ref.watch(navbarBottomControllerProvider).locale,
             supportedLocales: const [
               Locale('es', 'ES'),
+              Locale('en', 'US'),
             ],
           ),
         );

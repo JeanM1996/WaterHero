@@ -37,7 +37,9 @@
   "showerTime" : "Tiempo en ducha",
   "dailyConsumption" : "Consumo por día",
   "helpAndFollowTheAdvices" : "Ayudanos y sigue los consejos",
-  "togetherWeCanSave" : "Juntos podemos ahorrar"
+  "togetherWeCanSave" : "Juntos podemos ahorrar",
+  "logOut" : "Cerrar sesión",
+  "changeLanguage" : "Cambiar idioma"
   
 }
 

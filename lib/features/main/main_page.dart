@@ -196,33 +196,22 @@ class MainPage extends ConsumerWidget {
               fit: BoxFit.cover,
             ),
           ),
-          Positioned.fill(
-            bottom: -(context.height() + 290),
+          Positioned(
+            bottom: -450,
             child: Container(
               width: context.width(),
+              height: context.height(),
               //gradient of red color or blue color depends state color
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+                gradient: RadialGradient(
                   colors: stateNav.warning!
                       ? [
+                          Colors.red,
                           Colors.transparent,
-                          Colors.red.shade400.withOpacity(.2),
-                          Colors.red.withOpacity(.2),
-                          Colors.red,
-                          Colors.red,
-                          Colors.red,
-                          Colors.red,
                         ]
                       : [
+                          Colors.blue,
                           Colors.transparent,
-                          Colors.blue.shade400.withOpacity(.2),
-                          Colors.blue.withOpacity(.2),
-                          Colors.blue,
-                          Colors.blue,
-                          Colors.blue,
                         ],
                 ),
               ),

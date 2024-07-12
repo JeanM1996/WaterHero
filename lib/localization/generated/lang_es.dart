@@ -117,4 +117,10 @@ class LangEs extends Lang {
 
   @override
   String get togetherWeCanSave => 'Juntos podemos ahorrar';
+
+  @override
+  String get logOut => 'Cerrar sesión';
+
+  @override
+  String get changeLanguage => 'Cambiar idioma';
 }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:waterhero/features/main/domain/select_option.dart';
 import 'package:waterhero/features/main/widgets/navbar_bottom/navbar_bottom_state.dart';
@@ -19,5 +21,9 @@ class NavbarBottomController extends StateNotifier<NavbarBottomState> {
 
   void updateWarning(bool warning) {
     state = state.copyWith(warning: warning);
+  }
+
+  void setLocale(String locale) {
+    state = state.copyWith(locale: Locale(locale));
   }
 }

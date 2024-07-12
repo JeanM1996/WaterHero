@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'lang_en.dart';
 import 'lang_es.dart';
 
 /// Callers can lookup localized strings with an instance of Lang
@@ -88,6 +89,7 @@ abstract class Lang {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
     Locale('es')
   ];
 
@@ -318,6 +320,18 @@ abstract class Lang {
   /// In es, this message translates to:
   /// **'Juntos podemos ahorrar'**
   String get togetherWeCanSave;
+
+  /// No description provided for @logOut.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar sesión'**
+  String get logOut;
+
+  /// No description provided for @changeLanguage.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar idioma'**
+  String get changeLanguage;
 }
 
 class _LangDelegate extends LocalizationsDelegate<Lang> {
@@ -329,7 +343,7 @@ class _LangDelegate extends LocalizationsDelegate<Lang> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_LangDelegate old) => false;
@@ -340,6 +354,7 @@ Lang lookupLang(Locale locale) {
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'en': return LangEn();
     case 'es': return LangEs();
   }
 
