@@ -306,6 +306,18 @@ abstract class Lang {
   /// In es, this message translates to:
   /// **'Consumo por día'**
   String get dailyConsumption;
+
+  /// No description provided for @helpAndFollowTheAdvices.
+  ///
+  /// In es, this message translates to:
+  /// **'Ayudanos y sigue los consejos'**
+  String get helpAndFollowTheAdvices;
+
+  /// No description provided for @togetherWeCanSave.
+  ///
+  /// In es, this message translates to:
+  /// **'Juntos podemos ahorrar'**
+  String get togetherWeCanSave;
 }
 
 class _LangDelegate extends LocalizationsDelegate<Lang> {

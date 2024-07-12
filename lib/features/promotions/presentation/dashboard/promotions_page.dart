@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:waterhero/core/presentation/design/atoms/circular_progress.dart';
 import 'package:waterhero/core/presentation/utils/dimens_extension.dart';
@@ -36,53 +37,19 @@ class _PromotionsPageState extends ConsumerState<PromotionsPage> {
                 ? const CircularProgress()
                 : SafeArea(
                     child: Container(
+                      height: context.height(.8),
+                      width: context.width(),
                       padding: context.symetric(0, .05),
                       margin: context.symetric(.05, 0),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.promotions.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            margin: context.symetric(.05, 0),
-                            child: Column(
-                              children: [
-                                Container(
-                                  margin: context.symetric(.05, 0),
-                                  child: Text(
-                                    state.promotions[index].name,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                ),
-                                Container(
-                                  margin: context.symetric(.05, 0),
-                                  child: Text(
-                                    state.promotions[index].email,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                ),
-                                Container(
-                                  margin: context.symetric(.05, 0),
-                                  child: Text(
-                                    state.promotions[index].phone,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                ),
-                                Container(
-                                  margin: context.symetric(.05, 0),
-                                  child: Text(
-                                    state.promotions[index].address,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                ),
-                              ],
+                      child: InAppWebView(
+                        //url https://bogota.gov.co/mapa-turnos-racionamiento-agua
+                        initialUrlRequest: URLRequest(
+                          url: WebUri.uri(
+                            Uri.parse(
+                              'https://bogota.gov.co/mapa-turnos-racionamiento-agua',
                             ),
-                          );
-                        },
+                          ),
+                        ),
                       ),
                     ),
                   ),

@@ -111,4 +111,10 @@ class LangEs extends Lang {
 
   @override
   String get dailyConsumption => 'Consumo por día';
+
+  @override
+  String get helpAndFollowTheAdvices => 'Ayudanos y sigue los consejos';
+
+  @override
+  String get togetherWeCanSave => 'Juntos podemos ahorrar';
 }
