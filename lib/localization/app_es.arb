@@ -39,7 +39,10 @@
   "helpAndFollowTheAdvices" : "Ayudanos y sigue los consejos",
   "togetherWeCanSave" : "Juntos podemos ahorrar",
   "logOut" : "Cerrar sesión",
-  "changeLanguage" : "Cambiar idioma"
+  "changeLanguage" : "Cambiar idioma",
+  "lastRegisterOf" : "Último registro de",
+  "cubicMeters" : "metros cúbicos",
+  "at" : "a las"
   
 }
 

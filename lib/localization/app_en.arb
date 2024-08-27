@@ -40,7 +40,10 @@
   "helpAndFollowTheAdvices": "Help us and follow the advice",
   "togetherWeCanSave": "Together we can save",
   "logOut": "Log out",
-  "changeLanguage": "Change language"
+  "changeLanguage": "Change language",
+   "lastRegisterOf" : "Last register of",
+  "cubicMeters" : "cubic meters",
+  "at" : "at"
 
 }
 

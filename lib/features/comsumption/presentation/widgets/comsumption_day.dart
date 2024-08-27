@@ -8,7 +8,13 @@ import 'package:waterhero/features/comsumption/presentation/widgets/shower_plot.
 import 'package:waterhero/localization/generated/lang.dart';
 
 class ComsumptionDay extends StatelessWidget {
-  const ComsumptionDay({super.key});
+  const ComsumptionDay({
+    required this.projectedConsumption,
+    required this.showerTime,
+    super.key,
+  });
+  final num projectedConsumption;
+  final num showerTime;
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +54,15 @@ class ComsumptionDay extends StatelessWidget {
                         textColor: Colors.white,
                       ),
                       const SizedBox(height: 5),
-                      const Row(
+                      Row(
                         children: [
                           CustomText(
-                            '1000000',
+                            projectedConsumption.toString(),
                             fontSize: 20,
                             textColor: Colors.white,
                           ),
-                          SizedBox(width: 5),
-                          CustomText(
+                          const SizedBox(width: 5),
+                          const CustomText(
                             'Lts',
                             fontSize: 16,
                             textColor: Colors.white,
@@ -95,10 +101,10 @@ class ComsumptionDay extends StatelessWidget {
                           color: colors.black.withOpacity(.4),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(5),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
                           child: CustomText(
-                            '+15%',
+                            '+$showerTime',
                             fontSize: 10,
                             textColor: Colors.red,
                           ),
@@ -107,10 +113,10 @@ class ComsumptionDay extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 40,
                   child: ShowerPlot(
-                    percent: 20,
+                    percent: showerTime.toInt(),
                   ),
                 ),
               ],

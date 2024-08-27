@@ -12,10 +12,10 @@ class ConsumptionChart extends StatelessWidget {
     required this.currentHour,
     super.key,
   });
-  final List<int> hours;
-  final List<int> consumption;
-  final int threshold;
-  final int currentHour;
+  final List<num> hours;
+  final List<num> consumption;
+  final num threshold;
+  final num currentHour;
 
   @override
   Widget build(BuildContext context) {
@@ -57,15 +57,15 @@ class ConsumptionChartPainter extends CustomPainter {
     this.threshold,
     this.currentHour,
   );
-  final List<int> hours;
-  final List<int> consumption;
-  final int threshold;
-  final int currentHour;
+  final List<num> hours;
+  final List<num> consumption;
+  final num threshold;
+  final num currentHour;
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()..style = PaintingStyle.fill;
-
+    if (consumption.isEmpty) return;
     final barWidth = size.width / hours.length;
     final maxConsumption = consumption.reduce((a, b) => a > b ? a : b);
     final borderRadius = BorderRadius.circular(10);

@@ -1,5 +1,7 @@
 import 'lang.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for English (`en`).
 class LangEn extends Lang {
   LangEn([String locale = 'en']) : super(locale);
@@ -123,4 +125,13 @@ class LangEn extends Lang {
 
   @override
   String get changeLanguage => 'Change language';
+
+  @override
+  String get lastRegisterOf => 'Last register of';
+
+  @override
+  String get cubicMeters => 'cubic meters';
+
+  @override
+  String get at => 'at';
 }

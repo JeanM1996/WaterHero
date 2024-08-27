@@ -1,5 +1,7 @@
 import 'lang.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for Spanish Castilian (`es`).
 class LangEs extends Lang {
   LangEs([String locale = 'es']) : super(locale);
@@ -123,4 +125,13 @@ class LangEs extends Lang {
 
   @override
   String get changeLanguage => 'Cambiar idioma';
+
+  @override
+  String get lastRegisterOf => 'Último registro de';
+
+  @override
+  String get cubicMeters => 'metros cúbicos';
+
+  @override
+  String get at => 'a las';
 }

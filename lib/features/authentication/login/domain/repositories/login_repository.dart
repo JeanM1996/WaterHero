@@ -6,4 +6,6 @@ abstract class LoginRepository {
     required String email,
     required String password,
   });
+
+  Future<Either<CommonFailure, String>> getUserInfoCurrentSession();
 }

@@ -49,6 +49,7 @@ dependencies:
   whatsapp_share: ^2.0.2
   widget_screenshot: any
   weather: ^3.1.1
+  firebase_remote_config:
 
 dependency_overrides:
   flutter_colorpicker:

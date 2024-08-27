@@ -1,5 +1,7 @@
 //Cloud Firestore
 
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:waterhero/core/data/network/http_client.dart';
 
@@ -108,11 +110,15 @@ class FirebaseRest {
           .collection(collection)
           .where(field, isEqualTo: value)
           .get();
+      //print the resquest to validate
+
       final data = query.docs.map((e) => e.data()).toList();
+
       return HttpServiceResponse(
         success: true,
         message: 'Data retrieved',
-        body: data.toString(),
+        //json encode the data
+        body: jsonEncode(data),
       );
     } catch (e) {
       return HttpServiceResponse(success: false, message: '$e');

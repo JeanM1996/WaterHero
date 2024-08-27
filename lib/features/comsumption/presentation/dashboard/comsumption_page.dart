@@ -23,28 +23,21 @@ class _ComsumptionPageState extends ConsumerState<ComsumptionPage> {
     super.initState();
   }
 
-  late final List<int> _hours = [];
-  late final List<int> _consumption = [];
+  late List<num> _hours = [];
+  late List<num> _consumption = [];
   late bool soonToExcess = false;
-  late final int _threshold = 100;
+  late num _threshold = 100.0;
 
   Future loadData() async {
     final controller = ref.read(comsumptionController.notifier);
+    final state = ref.read(comsumptionController);
     controller.setIsLoading(true);
-    await Future.delayed(const Duration(seconds: 1));
-    _hours.addAll(
-      List.generate(
-        DateTime.now().hour,
-        (index) => index + 1,
-      ),
-    );
-    _consumption.addAll(
-      List.generate(
-        DateTime.now().hour,
-        (index) => (index + 1) * 100,
-      ),
-    );
-    soonToExcess = _consumption.last > _threshold;
+    await controller.getThreshold();
+    _threshold = state.threshold;
+    await controller.getRegistersDevice();
+    _hours = state.hours;
+    _consumption = state.consumption;
+    soonToExcess = state.soonToExcess;
     controller.setIsLoading(false);
     final controllerBar = ref.watch(navbarBottomControllerProvider.notifier);
     controllerBar.updateWarning(soonToExcess);
@@ -67,12 +60,15 @@ class _ComsumptionPageState extends ConsumerState<ComsumptionPage> {
                   SizedBox(height: context.height(.5)),
                   if (state.isLoading) const CircularProgress(),
                   const SizedBox(height: 20),
-                  if (soonToExcess)
-                    AlertSection(
-                      isExceeded: soonToExcess,
-                    ),
+                  AlertSection(
+                    isExceeded: soonToExcess,
+                    registerIot: state.consumptionData.first,
+                  ),
                   const SizedBox(height: 10),
-                  const ComsumptionDay(),
+                  ComsumptionDay(
+                    projectedConsumption: state.waterComsumptionProjection,
+                    showerTime: state.percentageShower,
+                  ),
                   const SizedBox(height: 10),
                   ConsumptionChart(
                     hours: _hours,

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:waterhero/core/data/network/firebase_rest.dart';
 import 'package:waterhero/core/data/network/http_client.dart';
 import 'package:waterhero/core/data/services/firebase_auth_service.dart';
 
@@ -10,6 +11,9 @@ abstract class LoginDataSource {
     String email,
     String password,
   );
+
+  //get UserInfo
+  Future<HttpServiceResponse> getUserInfoCurrentSession();
 }
 
 class LoginDataSourceImpl extends LoginDataSource {
@@ -25,5 +29,12 @@ class LoginDataSourceImpl extends LoginDataSource {
       email,
       password,
     );
+  }
+
+  @override
+  Future<HttpServiceResponse> getUserInfoCurrentSession() async {
+    final user = await firebaseAuthService.getCurrentUser();
+
+    return FirebaseRest().getCollectionWhere('users', 'uid', user.uid);
   }
 }

@@ -8,6 +8,8 @@ import 'package:intl/intl.dart' as intl;
 import 'lang_en.dart';
 import 'lang_es.dart';
 
+// ignore_for_file: type=lint
+
 /// Callers can lookup localized strings with an instance of Lang
 /// returned by `Lang.of(context)`.
 ///
@@ -332,6 +334,24 @@ abstract class Lang {
   /// In es, this message translates to:
   /// **'Cambiar idioma'**
   String get changeLanguage;
+
+  /// No description provided for @lastRegisterOf.
+  ///
+  /// In es, this message translates to:
+  /// **'Último registro de'**
+  String get lastRegisterOf;
+
+  /// No description provided for @cubicMeters.
+  ///
+  /// In es, this message translates to:
+  /// **'metros cúbicos'**
+  String get cubicMeters;
+
+  /// No description provided for @at.
+  ///
+  /// In es, this message translates to:
+  /// **'a las'**
+  String get at;
 }
 
 class _LangDelegate extends LocalizationsDelegate<Lang> {

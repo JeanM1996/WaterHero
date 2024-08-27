@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waterhero/core/presentation/design/atoms/custom_text.dart';
 import 'package:waterhero/core/presentation/design/tokens/colors.dart';
+import 'package:waterhero/core/presentation/utils/date_extension.dart';
 import 'package:waterhero/core/presentation/utils/dimens_extension.dart';
 import 'package:waterhero/core/presentation/utils/icons_paths.dart';
+import 'package:waterhero/features/comsumption/domain/models/register_iot.dart';
 import 'package:waterhero/localization/generated/lang.dart';
 
 class AlertSection extends StatelessWidget {
-  const AlertSection({super.key, this.isExceeded = false});
+  const AlertSection({
+    required this.registerIot,
+    super.key,
+    this.isExceeded = false,
+  });
   final bool isExceeded;
+  final RegisterIot registerIot;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +68,16 @@ class AlertSection extends StatelessWidget {
                   fontSize: 16,
                   textColor: Colors.white,
                 ),
+                const SizedBox(height: 10),
+                CustomText(
+                  '${Lang.of(context).lastRegisterOf}: ${registerIot.body.cubicmeters} ${Lang.of(context).cubicMeters} '
+                  '${Lang.of(context).at} ${DateTime.fromMillisecondsSinceEpoch(
+                    registerIot.when.toInt() * 1000,
+                  ).toFormattedDateTime()}',
+                  fontSize: 12,
+                  textColor: Colors.white,
+                ),
+                const SizedBox(height: 5),
               ],
             ),
           ),
