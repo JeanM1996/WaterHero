@@ -71,9 +71,9 @@ class AlertSection extends StatelessWidget {
                 const SizedBox(height: 10),
                 CustomText(
                   '${Lang.of(context).lastRegisterOf}: ${registerIot.body.cubicmeters} ${Lang.of(context).cubicMeters} '
-                  '${Lang.of(context).at} ${DateTime.fromMillisecondsSinceEpoch(
+                  '- ${DateTime.fromMillisecondsSinceEpoch(
                     registerIot.when.toInt() * 1000,
-                  ).toFormattedDateTime()}',
+                  ).toFormatAAMMDD()}',
                   fontSize: 12,
                   textColor: Colors.white,
                 ),

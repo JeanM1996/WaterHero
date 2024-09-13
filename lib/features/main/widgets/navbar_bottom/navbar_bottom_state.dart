@@ -7,7 +7,7 @@ class NavbarBottomState {
   NavbarBottomState({
     this.option,
     this.warning = false,
-    this.locale = const Locale('es'),
+    this.locale = const Locale('en'),
   });
   SelectOption? option;
   bool? warning;
@@ -26,7 +26,7 @@ class NavbarBottomState {
             icon: iconsPaths.iconComsumption,
           ),
       warning: warning ?? false,
-      locale: locale ?? const Locale('es'),
+      locale: locale ?? const Locale('en'),
     );
   }
 }

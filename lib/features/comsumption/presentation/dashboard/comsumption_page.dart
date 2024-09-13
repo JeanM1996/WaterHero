@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:waterhero/core/presentation/design/atoms/circular_progress.dart';
 import 'package:waterhero/core/presentation/utils/dimens_extension.dart';
+import 'package:waterhero/features/comsumption/domain/models/register_iot.dart';
 import 'package:waterhero/features/comsumption/presentation/dashboard/comsumption_controller.dart';
 import 'package:waterhero/features/comsumption/presentation/widgets/alert_section.dart';
 import 'package:waterhero/features/comsumption/presentation/widgets/comsumption_chart.dart';
@@ -62,7 +63,9 @@ class _ComsumptionPageState extends ConsumerState<ComsumptionPage> {
                   const SizedBox(height: 20),
                   AlertSection(
                     isExceeded: soonToExcess,
-                    registerIot: state.consumptionData.first,
+                    registerIot: state.consumptionData.isNotEmpty
+                        ? state.consumptionData.last
+                        : RegisterIot.empty(),
                   ),
                   const SizedBox(height: 10),
                   ComsumptionDay(
@@ -74,7 +77,7 @@ class _ComsumptionPageState extends ConsumerState<ComsumptionPage> {
                     hours: _hours,
                     consumption: _consumption,
                     threshold: _threshold,
-                    currentHour: DateTime.now().hour,
+                    currentHour: DateTime.now().day,
                   ),
                 ],
               ),

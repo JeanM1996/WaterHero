@@ -40,6 +40,7 @@ class ComsumptionRepositoryImpl implements ComsumptionRepository {
       }
       throw Exception();
     } catch (e) {
+      print('Error: $e');
       return left(
         const CommonFailure.server(code: 500, message: 'Bad request'),
       );

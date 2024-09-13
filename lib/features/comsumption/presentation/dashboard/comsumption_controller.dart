@@ -111,7 +111,10 @@ class ComsumptionController extends StateNotifier<ComsumptionState> {
 
           final currentDay = DateTime.now().day;
 
-          final falseS = consumption.last > state.threshold;
+          var falseS = false;
+          if (consumption.isNotEmpty) {
+            falseS = consumption.last > state.threshold;
+          }
 
           //final soonToExcess = consumption.last > state.threshold;
           state = state.copyWith(
@@ -135,7 +138,9 @@ class ComsumptionController extends StateNotifier<ComsumptionState> {
   }
 
   num projectWaterComsumptionDaily(List<num> cubicMeters) {
-    //apply rule to project consumption in litters in function of cubic metters list projection diary
+    if (cubicMeters.isEmpty) {
+      return 0;
+    }
     return cubicMeters.last * 1000;
   }
 

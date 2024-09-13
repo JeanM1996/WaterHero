@@ -50,4 +50,9 @@ class ValuesIot {
         o.humid == humid &&
         o.temp == temp;
   }
+
+  //empty
+  static ValuesIot empty() {
+    return ValuesIot(cubicmeters: 0, humid: 0, temp: 0);
+  }
 }

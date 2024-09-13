@@ -77,13 +77,13 @@ class RegisterIot {
   String file;
   List<String> fleets;
   String product;
-  double received;
+  num received;
   String req;
   String session;
   String triCountry;
-  double triLat;
+  num triLat;
   String triLocation;
-  double triLon;
+  num triLon;
   num triPoints;
   String triTimezone;
   num triWhen;
@@ -235,6 +235,38 @@ class RegisterIot {
       triTimezone: triTimezone ?? this.triTimezone,
       triWhen: triWhen ?? this.triWhen,
       when: when ?? this.when,
+    );
+  }
+
+  //empty
+  static RegisterIot empty() {
+    return RegisterIot(
+      app: '',
+      bestCountry: '',
+      bestId: '',
+      bestLat: 0,
+      bestLocation: '',
+      bestLocationType: '',
+      bestLocationWhen: 0,
+      bestLon: 0,
+      bestTimezone: '',
+      body: ValuesIot.empty(),
+      device: '',
+      event: '',
+      file: '',
+      fleets: [],
+      product: '',
+      received: 0,
+      req: '',
+      session: '',
+      triCountry: '',
+      triLat: 0,
+      triLocation: '',
+      triLon: 0,
+      triPoints: 0,
+      triTimezone: '',
+      triWhen: 0,
+      when: 0,
     );
   }
 }
